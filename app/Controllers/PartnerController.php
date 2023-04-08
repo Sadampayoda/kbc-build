@@ -36,4 +36,9 @@ class PartnerController extends BaseController
 
         return view('admin/partner/detail', ['data' => $data]);
     }
+
+    public function create()
+    {
+        return view('admin/partner/create');
+    }
 }
