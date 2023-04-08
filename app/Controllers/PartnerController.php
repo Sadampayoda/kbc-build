@@ -112,4 +112,19 @@ class PartnerController extends BaseController
 
         return redirect('admin/partners');
     }
+
+    public function delete($id = 0)
+    {
+        $data = $this->partner->find($id);
+
+        if (!$data) {
+            return throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        if ($this->partner->delete($id)) {
+            $path = FCPATH . 'uploads/assets/partner/' . $data['picture'];
+            unlink($path);
+            return redirect('admin/partners');
+        }
+    }
 }
