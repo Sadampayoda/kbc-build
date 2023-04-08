@@ -63,4 +63,17 @@ class PartnerController extends BaseController
 
         return redirect('admin/partners');
     }
+
+    public function edit($id = 0)
+    {
+        $data = $this->partner->find($id);
+
+        if (!$data) {
+            return throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $data['path'] = 'uploads/assets/partner/';
+
+        return view('admin/partner/edit', ['data' => $data]);
+    }
 }
