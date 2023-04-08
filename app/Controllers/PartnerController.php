@@ -41,4 +41,26 @@ class PartnerController extends BaseController
     {
         return view('admin/partner/create');
     }
+
+    public function insert()
+    {
+        $path = 'uploads/assets/partner';
+        $data = [
+            'name' => $this->request->getPost('name'),
+            'picture' => $this->request->getPost('picture'),
+        ];
+        $uploaded = $this->request->getFile('picture');
+        $fileName = $uploaded->getRandomName();
+        $data['picture'] = $fileName;
+
+        if (!$this->partner->save($data)) {
+            return redirect()->back()->with('error', $this->partner->errors());
+        }
+
+        if (!$uploaded->hasMoved()) {
+            $uploaded->move($path, $fileName);
+        }
+
+        return redirect('admin/partners');
+    }
 }
