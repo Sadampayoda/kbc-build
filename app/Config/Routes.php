@@ -37,6 +37,15 @@ $routes->get('/register','ValidasiController::viewRegister');
 $routes->post('/register','ValidasiController::addValidasiUser');
 $routes->post('/login', 'ValidasiController::validationAuthUser' );
 
+// Admin only can access this route
+$routes->get('/admin/partners', 'PartnerController::index');
+$routes->get('/admin/partners/(:num)', 'PartnerController::show/$1');
+$routes->get('/admin/partners/create', 'PartnerController::create');
+$routes->post('/admin/partners/insert', 'PartnerController::insert');
+$routes->get('/admin/partners/(:num)/edit', 'PartnerController::edit/$1');
+$routes->post('/admin/partners/(:num)/update', 'PartnerController::update/$1');
+$routes->get('/admin/partners/(:num)/delete', 'PartnerController::delete/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
