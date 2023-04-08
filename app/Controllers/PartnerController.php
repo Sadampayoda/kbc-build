@@ -76,4 +76,40 @@ class PartnerController extends BaseController
 
         return view('admin/partner/edit', ['data' => $data]);
     }
+
+    public function update($id = 0)
+    {
+        $path = 'uploads/assets/partner';
+        $old = $this->partner->find($id);
+        $uploaded = $this->request->getFile('picture');
+
+        if (!$old) {
+            return throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        if (!$uploaded->isValid()) {
+            $data = ['name' => $this->request->getPost('name')];
+
+            if (!$this->partner->update($id, $data)) {
+                return redirect()->back()->with('error', $this->partner->errors());
+            }
+        } else {
+            $data = [
+                'name' => $this->request->getPost('name'),
+                'picture' => $this->request->getPost('picture'),
+            ];
+            $fileName = $uploaded->getRandomName();
+            $data['picture'] = $fileName;
+
+            if (!$this->partner->update($id, $data)) {
+                return redirect()->back()->with('error', $this->partner->errors());
+            }
+
+            if (!$uploaded->hasMoved()) {
+                $uploaded->move($path, $fileName);
+            }
+        }
+
+        return redirect('admin/partners');
+    }
 }
