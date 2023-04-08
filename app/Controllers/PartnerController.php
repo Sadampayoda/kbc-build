@@ -23,4 +23,17 @@ class PartnerController extends BaseController
             'data' => $data
         ]);
     }
+
+    public function show($id = 0)
+    {
+        $data = $this->partner->find($id);
+
+        if (!$data) {
+            return throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $data['path'] = 'uploads/assets/partner/';
+
+        return view('admin/partner/detail', ['data' => $data]);
+    }
 }
