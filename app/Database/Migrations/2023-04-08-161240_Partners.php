@@ -25,7 +25,7 @@ class Partners extends Migration
         ]);
 
         $this->forge->addKey('id', TRUE);
-        $this->forge->createTable('news', TRUE);
+        $this->forge->createTable('partners', TRUE);
     }
 
     public function down()
