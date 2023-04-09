@@ -3,14 +3,12 @@
 namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
-use CodeIgniter\I18n\Time;
+use CodeIgniter\Database\RawSql;
 
 class Articles extends Migration
 {
     public function up()
     {
-        $now = Time::now('Asia/Jakarta', 'en_US');
-
         $this->forge->addField([
             'id' => [
                 'type' => 'INT',
@@ -26,12 +24,12 @@ class Articles extends Migration
             ],
             'created_at' => [
                 'type' => 'datetime',
-                'default' => $now,
+                'default' => new RawSql('CURRENT_TIMESTAMP'),
                 'null' => true
             ],
             'updated_at' => [
                 'type' => 'datetime',
-                'default' => $now,
+                'default' => new RawSql('CURRENT_TIMESTAMP'),
                 'null' => true
             ]
         ]);
