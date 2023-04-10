@@ -46,6 +46,14 @@ $routes->get('/admin/partners/(:num)/edit', 'PartnerController::edit/$1');
 $routes->post('/admin/partners/(:num)/update', 'PartnerController::update/$1');
 $routes->get('/admin/partners/(:num)/delete', 'PartnerController::delete/$1');
 
+$routes->get('/admin/articles', 'ArticleController::index');
+$routes->get('/admin/articles/(:num)', 'ArticleController::show/$1');
+$routes->get('/admin/articles/create', 'ArticleController::create');
+$routes->post('/admin/articles/insert', 'ArticleController::insert');
+$routes->get('/admin/articles/(:num)/edit', 'ArticleController::edit/$1');
+$routes->post('/admin/articles/(:num)/update', 'ArticleController::update/$1');
+$routes->get('/admin/articles/(:num)/delete', 'ArticleController::delete/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
