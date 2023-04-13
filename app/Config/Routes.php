@@ -54,6 +54,14 @@ $routes->get('/admin/articles/(:num)/edit', 'ArticleController::edit/$1');
 $routes->post('/admin/articles/(:num)/update', 'ArticleController::update/$1');
 $routes->get('/admin/articles/(:num)/delete', 'ArticleController::delete/$1');
 
+$routes->get('/admin/testimonials', 'TestimonialController::index');
+$routes->get('/admin/testimonials/(:num)', 'TestimonialController::show/$1');
+$routes->get('/admin/testimonials/create', 'TestimonialController::create');
+$routes->post('/admin/testimonials/insert', 'TestimonialController::insert');
+$routes->get('/admin/testimonials/(:num)/edit', 'TestimonialController::edit/$1');
+$routes->post('/admin/testimonials/(:num)/update', 'TestimonialController::update/$1');
+$routes->get('/admin/testimonials/(:num)/delete', 'TestimonialController::delete/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
